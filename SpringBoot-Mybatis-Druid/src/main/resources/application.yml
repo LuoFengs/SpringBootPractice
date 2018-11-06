@@ -1,7 +1,7 @@
 server:
   port: 8080
-  servlet:
-    context-path: /web
+#  servlet:
+#    context-path: /web
   tomcat:
     uri-encoding: UTF-8
 
@@ -9,11 +9,21 @@ spring:
   datasource:
     druid:
       # 数据库访问配置, 使用druid数据源
-      type: com.alibaba.druid.pool.DruidDataSource
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8
-      username: menglis
-      password: menglis
+      # 数据源1 mysql
+      mysql:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8
+        username: menglis
+        password: menglis
+      # 数据源2 oracle
+      oracle:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        url: jdbc:oracle:thin:@localhost:1521:ORCL
+        username: test
+        password: 123456
+
       # 连接池配置
       initial-size: 5
       min-idle: 5
@@ -61,4 +71,8 @@ spring:
       filter:
         stat:
           log-slow-sql: true
+logging:
+  level:
+    com.springboot.demo.service.dao: debug
+
 
